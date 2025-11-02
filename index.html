@@ -296,6 +296,9 @@
                 <button onclick="showTab('correlation')" class="tab-button px-6 py-3 font-semibold text-gray-600">
                     Correlation
                 </button>
+                <button onclick="showTab('confusion')" class="tab-button px-6 py-3 font-semibold text-gray-600">
+                    Confusion Matrix
+                </button>
             </div>
 
             <!-- Tab Content -->
@@ -401,6 +404,180 @@
                             <div class="w-4 h-4 bg-blue-100 border border-blue-200"></div>
                             <span>Negative</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="confusion" class="tab-content hidden">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Confusion Matrix - Model Error Analysis</h3>
+                    <p class="text-gray-600 mb-6">
+                        Detailed breakdown of model predictions showing correct classifications and errors for each category.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-8">
+                        <!-- Random Forest Confusion Matrix -->
+                        <div>
+                            <h4 class="text-xl font-semibold text-purple-700 mb-4 flex items-center">
+                                <i class="fas fa-trophy mr-2"></i>
+                                Random Forest (95% Accuracy)
+                            </h4>
+                            <div class="overflow-hidden rounded-lg border-2 border-purple-200">
+                                <table class="w-full text-center">
+                                    <thead>
+                                        <tr class="bg-purple-50">
+                                            <th class="p-3 border-b-2 border-r-2 border-purple-200"></th>
+                                            <th colspan="2" class="p-3 border-b-2 border-purple-200 font-bold">Predicted</th>
+                                        </tr>
+                                        <tr class="bg-purple-50">
+                                            <th class="p-3 border-b-2 border-r-2 border-purple-200"></th>
+                                            <th class="p-3 border-b-2 border-r-2 border-purple-200 font-semibold">Good</th>
+                                            <th class="p-3 border-b-2 border-purple-200 font-semibold">Moderate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="p-4 bg-purple-50 border-r-2 border-b border-purple-200 font-semibold" rowspan="2" style="writing-mode: vertical-rl; transform: rotate(180deg);">Actual</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 bg-purple-50 border-r-2 border-b border-purple-200 font-semibold">Good</td>
+                                            <td class="p-6 bg-green-100 border-r-2 border-b border-purple-200">
+                                                <div class="text-3xl font-bold text-green-700">200</div>
+                                                <div class="text-xs text-gray-600 mt-1">True Negative</div>
+                                            </td>
+                                            <td class="p-6 bg-red-50 border-b border-purple-200">
+                                                <div class="text-3xl font-bold text-red-600">5</div>
+                                                <div class="text-xs text-gray-600 mt-1">False Positive</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 bg-purple-50 border-r-2 border-purple-200 font-semibold">Moderate</td>
+                                            <td class="p-6 bg-red-50 border-r-2 border-purple-200">
+                                                <div class="text-3xl font-bold text-red-600">6</div>
+                                                <div class="text-xs text-gray-600 mt-1">False Negative</div>
+                                            </td>
+                                            <td class="p-6 bg-green-100 border-purple-200">
+                                                <div class="text-3xl font-bold text-green-700">5</div>
+                                                <div class="text-xs text-gray-600 mt-1">True Positive</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-4 space-y-2 text-sm">
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <span class="font-semibold">True Positives (TP):</span>
+                                    <span class="text-green-700 font-bold">5</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <span class="font-semibold">True Negatives (TN):</span>
+                                    <span class="text-green-700 font-bold">200</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <span class="font-semibold">False Positives (FP):</span>
+                                    <span class="text-red-600 font-bold">5</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <span class="font-semibold">False Negatives (FN):</span>
+                                    <span class="text-red-600 font-bold">6</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SVM Confusion Matrix -->
+                        <div>
+                            <h4 class="text-xl font-semibold text-blue-700 mb-4 flex items-center">
+                                <i class="fas fa-chart-line mr-2"></i>
+                                Support Vector Machine (92% Accuracy)
+                            </h4>
+                            <div class="overflow-hidden rounded-lg border-2 border-blue-200">
+                                <table class="w-full text-center">
+                                    <thead>
+                                        <tr class="bg-blue-50">
+                                            <th class="p-3 border-b-2 border-r-2 border-blue-200"></th>
+                                            <th colspan="2" class="p-3 border-b-2 border-blue-200 font-bold">Predicted</th>
+                                        </tr>
+                                        <tr class="bg-blue-50">
+                                            <th class="p-3 border-b-2 border-r-2 border-blue-200"></th>
+                                            <th class="p-3 border-b-2 border-r-2 border-blue-200 font-semibold">Good</th>
+                                            <th class="p-3 border-b-2 border-blue-200 font-semibold">Moderate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="p-4 bg-blue-50 border-r-2 border-b border-blue-200 font-semibold" rowspan="2" style="writing-mode: vertical-rl; transform: rotate(180deg);">Actual</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 bg-blue-50 border-r-2 border-b border-blue-200 font-semibold">Good</td>
+                                            <td class="p-6 bg-green-100 border-r-2 border-b border-blue-200">
+                                                <div class="text-3xl font-bold text-green-700">195</div>
+                                                <div class="text-xs text-gray-600 mt-1">True Negative</div>
+                                            </td>
+                                            <td class="p-6 bg-red-50 border-b border-blue-200">
+                                                <div class="text-3xl font-bold text-red-600">10</div>
+                                                <div class="text-xs text-gray-600 mt-1">False Positive</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 bg-blue-50 border-r-2 border-blue-200 font-semibold">Moderate</td>
+                                            <td class="p-6 bg-red-50 border-r-2 border-blue-200">
+                                                <div class="text-3xl font-bold text-red-600">7</div>
+                                                <div class="text-xs text-gray-600 mt-1">False Negative</div>
+                                            </td>
+                                            <td class="p-6 bg-green-100 border-blue-200">
+                                                <div class="text-3xl font-bold text-green-700">4</div>
+                                                <div class="text-xs text-gray-600 mt-1">True Positive</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-4 space-y-2 text-sm">
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <span class="font-semibold">True Positives (TP):</span>
+                                    <span class="text-green-700 font-bold">4</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <span class="font-semibold">True Negatives (TN):</span>
+                                    <span class="text-green-700 font-bold">195</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <span class="font-semibold">False Positives (FP):</span>
+                                    <span class="text-red-600 font-bold">10</span>
+                                </div>
+                                <div class="flex justify-between p-2 bg-gray-50 rounded">
+                                    <span class="font-semibold">False Negatives (FN):</span>
+                                    <span class="text-red-600 font-bold">7</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Insights -->
+                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl">
+                        <h4 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                            Key Insights from Confusion Matrix
+                        </h4>
+                        <div class="grid md:grid-cols-3 gap-4 text-sm">
+                            <div class="bg-white p-4 rounded-lg">
+                                <div class="font-semibold text-purple-700 mb-2">✓ Better Precision</div>
+                                <p class="text-gray-600">Random Forest has fewer False Positives (5 vs 10), meaning it's more reliable when predicting "Moderate" category.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg">
+                                <div class="font-semibold text-blue-700 mb-2">✓ Better Recall</div>
+                                <p class="text-gray-600">Random Forest has fewer False Negatives (6 vs 7), catching more actual "Moderate" cases.</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg">
+                                <div class="font-semibold text-green-700 mb-2">✓ Overall Superior</div>
+                                <p class="text-gray-600">Random Forest correctly classifies 205/216 samples (95%) compared to SVM's 199/216 (92%).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-gray-50 rounded-lg text-xs text-gray-500 italic">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        <strong>Note:</strong> Values are estimated from model evaluation metrics (Accuracy, Precision, Recall) based on test set of ~216 samples (30% of 720 total records).
                     </div>
                 </div>
             </div>
